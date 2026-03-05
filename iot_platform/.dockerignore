@@ -1,0 +1,7 @@
+bin/
+out/
+*.log
+*.tmp
+*.exe
+vendor/
+.git

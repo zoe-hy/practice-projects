@@ -57,4 +57,22 @@ go run Consumer.go
 
 4. 使用 `iot-api.http` 或 `go run stress.go` 发送测试数据。
 
+**监控与日志**
+
+- 本项目在生产者和消费者中集成了结构化日志（`zerolog`）以及 Prometheus 指标。默认会在生产者监听端口的下一个端口（`HTTP_PORT+1`，例如 `8081`）暴露 `/metrics`，消费者在 `:9100` 暴露 `/metrics`。你可以把这些地址接入 Prometheus。
+
+**构建镜像**
+
+```bash
+docker build -f Dockerfile.producer -t iot-producer:local .
+docker build -f Dockerfile.consumer -t iot-consumer:local .
+```
+
+**部署到 k8s（快速）**
+
+```bash
+kubectl apply -k k8s/
+```
+
+
 
